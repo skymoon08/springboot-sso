@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的账户</title>
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" type="text/css" href="libs/layer/need/layer.css" />
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+</head>
+<body>
+
+<div id="contanter">
+
+    <div class="main">
+
+        <div class="w_account_head">
+            <div class="content">
+                <h5>总资产(元)</h5>
+                <h3><a href="#" v-text="account.totalAssets"></a></h3>
+            </div>
+        </div>
+
+        <div class="w_bc">
+            <div class="w_account_earnings">
+                <ul>
+                    <li >累计总收益(元)<strong v-text="account.totalIncome"></strong></li>
+                    <li>可用余额(元)<strong  v-text="account.wallet"></strong></li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="w_investsucceed_buttonbox">
+        <button class="w_purebutton" type="button"  @click="logout">退出登陆</button>
+    </div>
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="libs/fastclick.js"></script>
+<script type="text/javascript" src="libs/layer/layer.js"></script>
+
+<script type="text/javascript" src="libs/vue.min.js"></script>
+<script type="text/javascript" src="libs/vue-resource-1.3.4.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#contanter',
+        data: {
+            account:{
+                totalAssets:null,
+                totalIncome:null,
+                wallet:null
+            }
+        },
+        methods: {
+            getAccountInfo: function () {
+                common.get("/account/getAccountInfo",{},function (result) {
+                    console.log(result);
+                    vm.account = result.data;
+                })
+            },
+            logout: function () {
+                common.post("/logout",{},function (result) {
+                    console.log(result);
+                    //清掉本地的auth_token
+                    localStorage.removeItem('auth_token');
+                    window.location.href = common.baseUrl + "/statics/login.html";
+                })
+            }
+        },
+        created: function(){
+            //  在 created 中，data 和 methods 都已经被初始化好了！
+            // 如果要调用 methods 中的方法，或者操作 data 中的数据，最早，只能在 created 中操作
+           this.getAccountInfo();
+        },
+        updated: function () {
+            // updated 事件执行的时候，页面和 data 数据已经保持同步了，都是最新的,只要有数据更新就会执行updated方法
+            common.log("updated");
+
+
+        },
+        mounted:function () {
+            // 已经真实的挂载到了页面中，用户已经可以看到渲染好的页面了
+        }
+    })
+
+</script>
+
+</html>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.suzhe.sso.mapper.TbUserMapper">
+
+     <!--自动生成代码头-->
+    <resultMap id="BaseResultMap" type="com.suzhe.sso.pojo.TbUser">
+
+        <result property="id"         column="id"          jdbcType="INTEGER"/>
+        <result property="username"   column="username"    jdbcType="VARCHAR"/>
+        <result property="phoneNo"    column="phone_no"    jdbcType="VARCHAR"/>
+        <result property="password"   column="password"    jdbcType="VARCHAR"/>
+        <result property="salt"       column="salt"        jdbcType="VARCHAR"/>
+        <result property="nickName"   column="nick_name"   jdbcType="VARCHAR"/>
+        <result property="headImg"    column="head_img"    jdbcType="VARCHAR"/>
+        <result property="indroduce"  column="indroduce"   jdbcType="VARCHAR"/>
+        <result property="sex"        column="sex"         jdbcType="CHAR"/>
+        <result property="address"    column="address"     jdbcType="VARCHAR"/>
+        <result property="birthday"   column="birthday"    jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    id,username,phone_no,password,salt,nick_name,head_img,indroduce,sex,address,birthday,create_time,update_time
+    </sql>
+
+
+    <insert id="insertSelective" parameterType="com.suzhe.sso.pojo.TbUser">
+        insert into tb_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="phoneNo != null">
+                phone_no,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="salt != null">
+                salt,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="headImg != null">
+                head_img,
+            </if>
+            <if test="indroduce != null">
+                indroduce,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+            #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNo != null">
+            #{phoneNo,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+            #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+            #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+            #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="headImg != null">
+            #{headImg,jdbcType=VARCHAR},
+            </if>
+            <if test="indroduce != null">
+            #{indroduce,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+            #{sex,jdbcType=CHAR},
+            </if>
+            <if test="address != null">
+            #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+            #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+            #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+            #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.suzhe.sso.pojo.TbUser">
+        update tb_user
+        <set>
+
+            <if test="id != null">
+            id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+            username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNo != null">
+            phone_no = #{phoneNo,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+            password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+            salt = #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+            nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="headImg != null">
+            head_img = #{headImg,jdbcType=VARCHAR},
+            </if>
+            <if test="indroduce != null">
+            indroduce = #{indroduce,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+            sex = #{sex,jdbcType=CHAR},
+            </if>
+            <if test="address != null">
+            address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+            birthday = #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from tb_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+
+    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.suzhe.sso.pojo.TbUserCriteria" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+
+        <if test="fields != null" >
+        ${fields}
+        </if>
+        <if test="fields == null" >
+            <include refid="Base_Column_List" />
+        </if>
+
+        from tb_user
+
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+
+    </select>
+
+    <select id="countByCriteria" parameterType="com.suzhe.sso.pojo.TbUserCriteria" resultType="java.lang.Integer" >
+        select count(*) from tb_user
+         <if test="_parameter != null" >
+             <include refid="Example_Where_Clause" />
+         </if>
+    </select>
+
+
+     <!--自动生成代码尾-->
+
+
+</mapper>
+

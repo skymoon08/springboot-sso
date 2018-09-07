@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.suzhe.sso.mapper.TbAccountMapper">
+
+     <!--自动生成代码头-->
+    <resultMap id="BaseResultMap" type="com.suzhe.sso.pojo.TbAccount">
+
+        <result property="id"          column="id"           jdbcType="INTEGER"/>
+        <result property="userId"      column="user_id"      jdbcType="INTEGER"/>
+        <result property="totalAssets" column="total_assets" jdbcType="DECIMAL"/>
+        <result property="totalIncome" column="total_income" jdbcType="DECIMAL"/>
+        <result property="wallet"      column="wallet"       jdbcType="DECIMAL"/>
+        <result property="createTime"  column="create_time"  jdbcType="TIMESTAMP"/>
+        <result property="updateTime"  column="update_time"  jdbcType="TIMESTAMP"/>
+
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    id,user_id,total_assets,total_income,wallet,create_time,update_time
+    </sql>
+
+
+    <insert id="insertSelective" parameterType="com.suzhe.sso.pojo.TbAccount">
+        insert into tb_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="totalAssets != null">
+                total_assets,
+            </if>
+            <if test="totalIncome != null">
+                total_income,
+            </if>
+            <if test="wallet != null">
+                wallet,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+            #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+            #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="totalAssets != null">
+            #{totalAssets,jdbcType=DECIMAL},
+            </if>
+            <if test="totalIncome != null">
+            #{totalIncome,jdbcType=DECIMAL},
+            </if>
+            <if test="wallet != null">
+            #{wallet,jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+            #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+            #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.suzhe.sso.pojo.TbAccount">
+        update tb_account
+        <set>
+
+            <if test="id != null">
+            id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+            user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="totalAssets != null">
+            total_assets = #{totalAssets,jdbcType=DECIMAL},
+            </if>
+            <if test="totalIncome != null">
+            total_income = #{totalIncome,jdbcType=DECIMAL},
+            </if>
+            <if test="wallet != null">
+            wallet = #{wallet,jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from tb_account
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tb_account
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+
+    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="com.suzhe.sso.pojo.TbAccountCriteria" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+
+        <if test="fields != null" >
+        ${fields}
+        </if>
+        <if test="fields == null" >
+            <include refid="Base_Column_List" />
+        </if>
+
+        from tb_account
+
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+
+    </select>
+
+    <select id="countByCriteria" parameterType="com.suzhe.sso.pojo.TbAccountCriteria" resultType="java.lang.Integer" >
+        select count(*) from tb_account
+         <if test="_parameter != null" >
+             <include refid="Example_Where_Clause" />
+         </if>
+    </select>
+
+
+     <!--自动生成代码尾-->
+
+
+</mapper>
+
