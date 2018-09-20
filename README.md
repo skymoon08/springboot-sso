@@ -1,7 +1,7 @@
 #  springboot-sso
 
 #### 项目介绍
-![1537427622428](C:\Users\ADMINI~1\AppData\Local\Temp\1537427622428.png)
+![1537427622428](https://github.com/suzhe2018/springboot-sso/blob/master/doc/introduce.JPG)
 
 
 
