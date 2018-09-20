@@ -1,4 +1,4 @@
-package com.suzhe.sso.vo;
+package com.suzhe.sso.param;
 
 import com.suzhe.sso.common.validation.EqualLength;
 import lombok.Data;

@@ -3,8 +3,9 @@ package com.suzhe.sso.test;
 
 import com.suzhe.sso.common.util.CodecUtil;
 import com.suzhe.sso.common.util.RedisUtil;
-import com.suzhe.sso.common.util.RediskeyUtil;
+import com.suzhe.sso.mapper.TbProductMapper;
 import com.suzhe.sso.mapper.TbUserMapper;
+import com.suzhe.sso.pojo.TbProduct;
 import com.suzhe.sso.pojo.TbUser;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
@@ -13,6 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,6 +29,9 @@ public class Test {
 
     @Autowired
     RedisUtil redisUtil;
+
+    @Autowired
+    TbProductMapper tbProductMapper;
 
     @org.junit.Test
     public void test(){
@@ -39,9 +46,15 @@ public class Test {
     }
     @org.junit.Test
     public void test2(){
-        redisUtil.set("aaaa","bbbb");
 
-        System.out.println(redisUtil.get("aaa",String.class));
+        TbProduct product = new TbProduct();
+        product.setProductName("双季盈");
+        product.setAnnualYield(new BigDecimal("0.08"));
+        product.setInvestPeriod(60);
+        product.setTotalAmount(BigDecimal.valueOf(100000));
+        product.setCreateTime(new Date());
+        product.setUpdateTime(new Date());
+        tbProductMapper.insertSelective(product);
     }
 
 

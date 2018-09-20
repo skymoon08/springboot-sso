@@ -24,13 +24,9 @@ public class AccountController {
     @LoginAuth
     @RequestMapping(value = "getAccountInfo", method = RequestMethod.GET)
     public R<AccountVo> getAccountInfo() {
-
         LoginUser loginUser = LoginUserContex.getLoginUser();
-
         AccountVo accountVo = iAccountService.getAccountVo(loginUser.getId());
         return R.createBySuccess(accountVo);
     }
-
-
 
 }

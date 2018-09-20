@@ -770,7 +770,7 @@
 .w_footerbj{ height:51px;}
 .w_footertab{  position:fixed; bottom:0; left:0; right:0; height:50px; background-color:#fff; border-top:1px solid #e3e3e3; z-index:100;}
 .w_footertab ul{ overflow:hidden;}
-.w_footertab ul li{ float:left; width:25%; text-align:center; font-size:0.75rem; line-height:20px; position:relative; }
+.w_footertab ul li{ float:left; width:50%; text-align:center; font-size:0.75rem; line-height:20px; position:relative; }
 .w_footertab ul li a{ display:block;color:#666; padding-top:30px;}
 .w_footertab ul li a i{ position:absolute; top:3px; left:50%; width:28px; height:28px; margin-left:-14px; background-size:contain; background-position:top center; background-repeat:no-repeat;}
 .w_footertab ul li a i.icon1{ background-image:url(../images/w_f_01.png);}

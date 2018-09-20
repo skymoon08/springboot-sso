@@ -6,7 +6,7 @@ import com.suzhe.sso.common.constant.LoginConstant;
 import com.suzhe.sso.common.util.RedisUtil;
 import com.suzhe.sso.common.util.RediskeyUtil;
 import com.suzhe.sso.service.IUserService;
-import com.suzhe.sso.vo.LoginParam;
+import com.suzhe.sso.param.LoginParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

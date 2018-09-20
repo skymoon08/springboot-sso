@@ -3,8 +3,10 @@ package com.suzhe.sso.convert;
 
 import com.suzhe.sso.common.web.LoginUser;
 import com.suzhe.sso.pojo.TbAccount;
+import com.suzhe.sso.pojo.TbProduct;
 import com.suzhe.sso.pojo.TbUser;
 import com.suzhe.sso.vo.AccountVo;
+import com.suzhe.sso.vo.ProductVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -16,5 +18,7 @@ public interface PojoToVoConvert {
     LoginUser pojoToLoginUser(TbUser user);
 
     AccountVo pojoToAccountVo(TbAccount account);
+
+    ProductVo pojoToProductVo(TbProduct product);
 
 }
